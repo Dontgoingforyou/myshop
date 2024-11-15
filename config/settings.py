@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'shop',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -86,3 +87,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CART_SESSION_ID = 'cart'
+
+PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
