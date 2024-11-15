@@ -1,0 +1,10 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Спасибо{% endblock %}
+
+{% block content %}
+    <h1>Спасибо!</h1>
+    <p>Ваш заказ под номером <strong>{{ order.id }}</strong> был успешно обработан.</p>
+    <a href="{% url 'shop:product_list' %}"><input type="submit" value="Вернуться назад"></a>
+{% endblock %}
