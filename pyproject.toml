@@ -13,6 +13,7 @@ python-decouple = "^3.8"
 psycopg2-binary = "^2.9.10"
 celery = "^5.4.0"
 flower = "^2.0.1"
+stripe = "^11.2.0"
 
 
 [build-system]

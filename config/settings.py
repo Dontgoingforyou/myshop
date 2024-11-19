@@ -5,6 +5,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-tc#+pstds$^9q_ypg*o!$uodo-zwvharplkdw=!p))6#3j(9)j'
 
+PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -21,6 +23,7 @@ INSTALLED_APPS = [
     'shop',
     'orders',
     'cart',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -105,4 +108,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 CART_SESSION_ID = 'cart'
 
-PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+STRIPE_API_VERSION = '2024-04-10'
