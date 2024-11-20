@@ -32,10 +32,17 @@ def order_create(request):
                     quantity=item['quantity']
             )
             cart.clear()
+
+            # Очистка купона из сессии после оплаты заказа
+            if 'coupon_id' in request.session:
+                del request.session['coupon_id']
+
             # запуск асинхронного задания
             order_created.delay(order.id)
+
             # задать заказ в сеансе
             request.session['order_id'] = order.id
+
             # перенаправление к платежу
             return redirect(reverse('payment:process'))
 
