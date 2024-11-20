@@ -197,8 +197,39 @@ ul.errorlist {
     margin-bottom:8px;
 }
 
-.product-detail {
-    text-align:justify;
+.product_detail {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.product_image img {
+    max-width: 300px;
+    height: auto;
+}
+
+.product_info {
+    max-width: 60%;
+}
+
+.product_info h1 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.product_info .price {
+    font-size: 20px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.product_info form {
+    margin-top: 15px;
+}
+
+.description {
+    margin-top: 20px;
+    line-height: 1.5;
 }
 
 .product-detail .price {
@@ -283,6 +314,12 @@ ul.errorlist {
 
 .recommendations {
     clear:both;
+}
+
+.recommended_items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .recommendations div {
