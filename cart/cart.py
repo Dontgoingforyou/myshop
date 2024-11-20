@@ -1,7 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
 from shop.models import Product
-
+from coupons.models import Coupon
 
 class Cart:
     def __init__(self, request):
@@ -13,6 +13,8 @@ class Cart:
             # сохранение пустой корзины в сеансе
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
+        # Сохранение примененного купона
+        self.coupon_id = self.session.get('coupon_id')
 
     def __iter__(self):
         """ Прокрутка товара в корзине в цикле и получение товаров из БД """
@@ -67,3 +69,26 @@ class Cart:
 
         del self.session[settings.CART_SESSION_ID]
         self.save()
+
+    @property
+    def coupon(self):
+        """ Метод определяется как свойство. Если корзина содержит coupon_id, то возвращается объект Coupon с id """
+
+        if self.coupon_id:
+            try:
+                return Coupon.objects.get(id=self.coupon_id)
+            except Coupon.DoesNotExist:
+                pass
+        return None
+
+    def get_discount(self):
+        """ Если в корзине есть купон, извлекается его скидка и высчитывается сумма,
+            которая будет вычтена из общей суммы корзины """
+
+        if self.coupon:
+            return (self.coupon.discount / Decimal(100)) * self.get_total_price()
+        return Decimal(0)
+
+    def get_total_price_after_discount(self):
+        """ Метод возвращает сумму корзины """
+        return self.get_total_price() - self.get_discount()
