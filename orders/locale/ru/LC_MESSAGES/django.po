@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-21 19:27+0300\n"
+"POT-Creation-Date: 2024-11-21 19:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,11 +62,62 @@ msgid ""
 msgstr ""
 
 #: orders/templates/orders/order/create.html:26
+#: orders/templates/orders/order/pdf.html:28
+#: orders/templates/orders/order/pdf.html:58
 msgid "Всего"
 msgstr ""
 
 #: orders/templates/orders/order/create.html:30
 msgid "Оплатить заказ"
+msgstr ""
+
+#: orders/templates/orders/order/pdf.html:5
+msgid "Магазин"
+msgstr ""
+
+#: orders/templates/orders/order/pdf.html:7
+msgid "Счет №"
+msgstr ""
+
+#: orders/templates/orders/order/pdf.html:13
+msgid "Чек для"
+msgstr ""
+
+#: orders/templates/orders/order/pdf.html:21
+msgid "Купленные товары"
+msgstr ""
+
+#: orders/templates/orders/order/pdf.html:25
+msgid "Продукт"
+msgstr ""
+
+#: orders/templates/orders/order/pdf.html:26
+msgid "Цена"
+msgstr ""
+
+#: orders/templates/orders/order/pdf.html:27
+msgid "Количество"
+msgstr ""
+
+#: orders/templates/orders/order/pdf.html:43
+msgid "Промежуточная сумма"
+msgstr ""
+
+#: orders/templates/orders/order/pdf.html:48
+#, python-format
+msgid ""
+"\n"
+"              Купон %(code)s\n"
+"              Скидка %(discount)s%%\n"
+"            "
+msgstr ""
+
+#: orders/templates/orders/order/pdf.html:65
+msgid "Оплачено"
+msgstr ""
+
+#: orders/templates/orders/order/pdf.html:65
+msgid "Ожидает оплаты"
 msgstr ""
 
 #: orders/urls.py:9

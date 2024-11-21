@@ -1,15 +1,16 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <body>
-  <h1>Магазин</h1>
+  <h1>{% translate "Магазин" %}</h1>
   <p>
-    Счет №{{ order.id }}<br>
+    {% translate "Счет №" %}{{ order.id }}<br>
     <span class="secondary">
       {{ order.created|date:"d M, Y" }}
     </span>
   </p>
 
-  <h3>Чек для</h3>
+  <h3>{% translate "Чек для" %}</h3>
   <p>
     {{ order.first_name }} {{ order.last_name }}<br>
     {{ order.email }}<br>
@@ -17,14 +18,14 @@
     {{ order.postal_code }}, {{ order.city }}
   </p>
 
-  <h3>Купленные товары</h3>
+  <h3>{% translate "Купленные товары" %}</h3>
   <table>
     <thead>
       <tr>
-        <th>Продукт</th>
-        <th>Цена</th>
-        <th>Количество</th>
-        <th>Всего</th>
+        <th>{% translate "Продукт" %}</th>
+        <th>{% translate "Цена" %}</th>
+        <th>{% translate "Количество" %}</th>
+        <th>{% translate "Всего" %}</th>
       </tr>
     </thead>
     <tbody>
@@ -39,27 +40,29 @@
 
       {% if order.coupon %}
         <tr class="subtotal">
-          <td colspan="3">Промежуточная сумма</td>
+          <td colspan="3">{% translate "Промежуточная сумма" %}</td>
           <td class="num">{{ order.get_total_cost_before_discount|floatformat:2 }}</td>
         </tr>
         <tr>
           <td colspan="3">
-            Купон {{ order.coupon.code }}
-            Скидка {{ order.discount }}%
+            {% blocktranslate with code=order.coupon.code discount=order.discount %}
+              Купон {{ code }}
+              Скидка {{ discount }}%
+            {% endblocktranslate %}
           </td>
           <td class="num neg">- {{ order.get_discount|floatformat:2 }}</td>
         </tr>
       {% endif %}
 
       <tr class="total">
-        <td colspan="3">Всего</td>
+        <td colspan="3">{% translate "Всего" %}</td>
         <td class="num">{{ order.get_total_cost|floatformat:2 }} руб.</td>
       </tr>
     </tbody>
   </table>
 
   <span class="{% if order.paid %}paid{% else %}pending{% endif %}">
-    {% if order.paid %}Оплачено{% else %}Ожидает оплаты{% endif %}
+    {% if order.paid %}{% translate "Оплачено" %}{% else %}{% translate "Ожидает оплаты" %}{% endif %}
   </span>
 </body>
 </html>

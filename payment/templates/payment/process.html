@@ -1,18 +1,18 @@
 {% extends 'shop/base.html' %}
-{% load static %}
+{% load 180n static %}
 
-{% block title %}Оплата заказа{% endblock %}
+{% block title %}{% translate "Оплата заказа" %}{% endblock %}
 
 {% block content %}
-    <h1>Оплата заказа</h1>
+    <h1>{% translate "Оплата заказа" %}</h1>
     <table class="cart">
         <thead>
             <tr>
-                <th>Изображение</th>
-                <th>Продукт</th>
-                <th>Цена</th>
-                <th>Количество</th>
-                <th>Всего</th>
+                <th>{% translate "Изображение" %}</th>
+                <th>{% translate "Продукт" %}</th>
+                <th>{% translate "Цена" %}</th>
+                <th>{% translate "Количество" %}</th>
+                <th>{% translate "Всего" %}</th>
             </tr>
         </thead>
         <tbody>
@@ -30,28 +30,30 @@
 
             {% if order.coupon %}
                 <tr class="subtotal">
-                    <td>Промежуточная сумма</td>
+                    <td>{% translate "Промежуточная сумма" %}</td>
                     <td colspan="3"></td>
                     <td class="num">{{ order.get_total_cost_before_discount|floatformat:2 }}</td>
                 </tr>
                 <tr>
                     <td>
-                        Купон "{{ order.coupon.code }}"
-                        Скидка {{ order.discount }}%
+                        {% blocktranslate with code=order.coupon.code discount=order.discount %}
+                            Купон "{{ code }}"
+                            Скидка {{ discount }}%
+                        {% endblocktranslate %}
                     </td>
                     <td colspan="3"></td>
                     <td class="num neg">- {{ order.get_discount|floatformat:2 }} руб.</td>
                 </tr>
             {% endif %}
             <tr class="total">
-                <td>Всего</td>
+                <td>{% translate "Всего" %}</td>
                 <td colspan="3"></td>
                 <td class="num">{{ order.get_total_cost|floatformat:2 }} руб.</td>
             </tr>
         </tbody>
     </table>
     <form action="{% url 'payment:process' %}" method="post">
-        <input type="submit" value="Оплатить">
+        <input type="submit" value="{% translate 'Оплатить' %}">
         {% csrf_token %}
     </form>
 {% endblock %}

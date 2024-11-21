@@ -1,9 +1,9 @@
 {% extends 'shop/base.html' %}
-{% load static %}
+{% load i18n static %}
 
-{% block title %}Платеж отменен{% endblock %}
+{% block title %}{% translate "Платеж отменен" %}{% endblock %}
 
 {% block content %}
-  <h1>Ваш платеж отменен</h1>
-  <p>Возникла проблема с обработкой вашего платежа</p>
+  <h1>{% translate "Ваш платеж отменен" %}</h1>
+  <p>{% translate "Возникла проблема с обработкой вашего платежа" %}</p>
 {% endblock %}

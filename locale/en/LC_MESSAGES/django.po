@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-21 19:27+0300\n"
-"PO-Revision-Date: 2024-11-21 16:29+0000\n"
+"POT-Creation-Date: 2024-11-21 19:57+0300\n"
+"PO-Revision-Date: 2024-11-21 17:07+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,9 +19,85 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.10.1\n"
 
-#: cart/forms.py:6
+#: cart/forms.py:6 cart/templates/cart/detail.html:13
+#: payment/templates/payment/process.html:14
 msgid "Количество"
 msgstr "Quantity"
+
+#: cart/templates/cart/detail.html:4 cart/templates/cart/detail.html:7
+#| msgid "Ваша корзина"
+msgid "Корзина"
+msgstr "Your shopping cart"
+
+#: cart/templates/cart/detail.html:11
+#: payment/templates/payment/process.html:11
+msgid "Изображение"
+msgstr "Image"
+
+#: cart/templates/cart/detail.html:12
+#: payment/templates/payment/process.html:12
+msgid "Продукт"
+msgstr "Product"
+
+#: cart/templates/cart/detail.html:14 cart/templates/cart/detail.html:39
+msgid "Удалить"
+msgstr "Remove"
+
+#: cart/templates/cart/detail.html:15
+msgid "Цена за единицу товара"
+msgstr "Unit price"
+
+#: cart/templates/cart/detail.html:16
+msgid "Общая цена"
+msgstr "Cost"
+
+#: cart/templates/cart/detail.html:33
+msgid "Обновить"
+msgstr "Refresh"
+
+#: cart/templates/cart/detail.html:51
+#: payment/templates/payment/process.html:33
+msgid "Промежуточная сумма"
+msgstr "Subtotal"
+
+#: cart/templates/cart/detail.html:57
+#, python-format
+msgid ""
+"\n"
+"              Купон \"%(code)s\"\n"
+"              Скидка %(discount)s%%\n"
+"            "
+msgstr ""
+"\n"
+"\"%(code)s\" coupon %(discount)s% off)"
+
+#: cart/templates/cart/detail.html:67
+#: payment/templates/payment/process.html:15
+#: payment/templates/payment/process.html:49
+msgid "Всего"
+msgstr "Total"
+
+#: cart/templates/cart/detail.html:76
+#: shop/templates/shop/product/detail.html:32
+msgid "Люди обычно покупают с данным товаром"
+msgstr "People who bought this also bought"
+
+#: cart/templates/cart/detail.html:90
+msgid "Примените купон"
+msgstr "Apply a coupon"
+
+#: cart/templates/cart/detail.html:93
+msgid "Применить"
+msgstr "Apply"
+
+#: cart/templates/cart/detail.html:98
+msgid "Вернуться в магазин"
+msgstr "Continue shopping"
+
+#: cart/templates/cart/detail.html:99
+#: payment/templates/payment/process.html:56
+msgid "Оплатить"
+msgstr "Checkout"
 
 #: config/settings.py:97
 msgid "Russian"
@@ -51,6 +127,55 @@ msgstr "coupons/"
 msgid "Купон"
 msgstr "Coupon"
 
+#: payment/templates/payment/canceled.html:4
+msgid "Платеж отменен"
+msgstr "Payment canceled"
+
+#: payment/templates/payment/canceled.html:7
+msgid "Ваш платеж отменен"
+msgstr "Your payment has not been processed"
+
+#: payment/templates/payment/canceled.html:8
+msgid "Возникла проблема с обработкой вашего платежа"
+msgstr "There was a problem processing your payment"
+
+#: payment/templates/payment/completed.html:4
+#: payment/templates/payment/completed.html:7
+msgid "Платеж прошел успешно"
+msgstr "Payment successful"
+
+#: payment/templates/payment/completed.html:8
+msgid "Ваш платеж был успешно обработан"
+msgstr "Your payment was successful"
+
+#: payment/templates/payment/process.html:4
+#: payment/templates/payment/process.html:7
+msgid "Оплата заказа"
+msgstr "Pay now"
+
+#: payment/templates/payment/process.html:13
+msgid "Цена"
+msgstr "Price"
+
+#: payment/templates/payment/process.html:39
+#, python-format
+#| msgid ""
+#| "\n"
+#| "                            %(total)s руб. %(items)s товар\n"
+#| "                        "
+#| msgid_plural ""
+#| "\n"
+#| "                            %(total)s руб. %(items)s %(items|russian_pluralize:\"товар,товара,товаров\")s\n"
+#| "                        "
+msgid ""
+"\n"
+"                            Купон \"%(code)s\"\n"
+"                            Скидка %(discount)s%%\n"
+"                        "
+msgstr ""
+"\n"
+"%(items)s item, %(total)s"
+
 #: payment/urls.py:10
 msgid "process/"
 msgstr "process/"
@@ -67,11 +192,15 @@ msgstr "canceled/"
 msgid "Магазин"
 msgstr "Shop"
 
-#: shop/templates/shop/base.html:18
+#: shop/templates/shop/base.html:17
+msgid "Язык"
+msgstr "Language"
+
+#: shop/templates/shop/base.html:33
 msgid "Ваша корзина"
 msgstr "Your shopping cart"
 
-#: shop/templates/shop/base.html:20
+#: shop/templates/shop/base.html:35
 #, python-format
 msgid ""
 "\n"
@@ -88,7 +217,7 @@ msgstr[1] ""
 "\n"
 "%(items)s items, %(total)s"
 
-#: shop/templates/shop/base.html:27
+#: shop/templates/shop/base.html:42
 msgid "Ваша корзина пуста"
 msgstr "Your shopping cart is empty"
 
@@ -96,6 +225,15 @@ msgstr "Your shopping cart is empty"
 msgid "Добавить в корзину"
 msgstr "Add to Cart"
 
-#: shop/templates/shop/product/detail.html:32
-msgid "Люди обычно покупают с данным товаром"
-msgstr "People usually buy with this product"
+#: shop/templates/shop/product/list.html:5
+#: shop/templates/shop/product/list.html:24
+msgid "Продукты"
+msgstr "Products"
+
+#: shop/templates/shop/product/list.html:10
+msgid "Категории"
+msgstr "Categories"
+
+#: shop/templates/shop/product/list.html:13
+msgid "Все"
+msgstr "All"

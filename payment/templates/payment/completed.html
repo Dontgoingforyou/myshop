@@ -1,9 +1,9 @@
 {% extends 'shop/base.html' %}
-{% load static %}
+{% load i18n static %}
 
-{% block title %}Платеж прошел успешно{% endblock %}
+{% block title %}{% translate "Платеж прошел успешно" %}{% endblock %}
 
 {% block content %}
-  <h1>Платеж прошел успешно</h1>
-  <p>Ваш платеж был успешно обработан</p>
+  <h1>{% translate "Платеж прошел успешно" %}</h1>
+  <p>{% translate "Ваш платеж был успешно обработан" %}</p>
 {% endblock %}

@@ -1,19 +1,19 @@
 {% extends 'shop/base.html' %}
-{% load static %}
+{% load i18n static %}
 
-{% block title %}Корзина{% endblock %}
+{% block title %}{% translate "Корзина" %}{% endblock %}
 
 {% block content %}
-  <h1>Корзина</h1>
+  <h1>{% translate "Корзина" %}</h1>
   <table class="cart">
     <thead>
       <tr>
-        <th>Изображение</th>
-        <th>Продукт</th>
-        <th>Количество</th>
-        <th>Удалить</th>
-        <th>Цена за единицу товара</th>
-        <th>Общая цена</th>
+        <th>{% translate "Изображение" %}</th>
+        <th>{% translate "Продукт" %}</th>
+        <th>{% translate "Количество" %}</th>
+        <th>{% translate "Удалить" %}</th>
+        <th>{% translate "Цена за единицу товара" %}</th>
+        <th>{% translate "Общая цена" %}</th>
       </tr>
     </thead>
     <tbody>
@@ -30,13 +30,13 @@
               <form action="{% url 'cart:cart_add' product.id %}" method="post">
                 {{ item.update_quantity_form.quantity }}
                 {{ item.update_quantity_form.override }}
-                <input type="submit" value="Обновить">
+                <input type="submit" value="{% translate 'Обновить' %}">
                 {% csrf_token %}
               </form>
             </td>
             <td>
               <form action="{% url 'cart:cart_remove' product.id %}" method="post">
-                <input type="submit" value="Удалить">
+                <input type="submit" value="{% translate 'Удалить' %}">
                 {% csrf_token %}
               </form>
             </td>
@@ -48,21 +48,23 @@
 
       {% if cart.coupon %}
         <tr class="subtotal">
-          <td>Промежуточная сумма</td>
+          <td>{% translate "Промежуточная сумма" %}</td>
           <td colspan="4"></td>
           <td class="num">{{ cart.get_total_price|floatformat:2 }} руб.</td>
         </tr>
         <tr>
           <td>
-            Купон "{{ cart.coupon.code }}"
-            Скидка {{ cart.coupon.discount }}%
+            {% blocktranslate with code=cart.coupon.code discount=cart.coupon.discount %}
+              Купон "{{ code }}"
+              Скидка {{ discount }}%
+            {% endblocktranslate %}
           </td>
           <td colspan="4"></td>
           <td class="num neg">- {{ cart.get_discount|floatformat:2 }} руб.</td>
         </tr>
       {% endif %}
       <tr class="total">
-        <td>Всего</td>
+        <td>{% translate "Всего" %}</td>
         <td colspan="4"></td>
         <td class="num">{{ cart.get_total_price_after_discount|floatformat:2 }} руб.</td>
       </tr>
@@ -71,7 +73,7 @@
 
   {% if recommended_products %}
         <div class="recommendations cart">
-            <h3>Люди обычно покупают с данным товаром</h3>
+            <h3>{% translate "Люди обычно покупают с данным товаром" %}</h3>
             <div class="recommended_items">
                 {% for p in recommended_products %}
                     <div class="item">
@@ -85,15 +87,15 @@
         </div>
     {% endif %}
 
-  <p>Примените купон</p>
+  <p>{% translate "Примените купон" %}</p>
   <form action="{% url 'coupons:apply' %}" method="post" style="display: flex; align-items: center; gap: 5px;">
     {{ coupon_apply_form }}
-    <input type="submit" value="Применить">
+    <input type="submit" value="{% translate 'Применить' %}">
     {% csrf_token %}
   </form>
 
   <p class="text-right">
-    <a href="{% url 'shop:product_list' %}" class="button light">Вернуться в магазин</a>
-    <a href="{% url 'orders:order_create' %}" class="button">Оплатить</a>
+    <a href="{% url 'shop:product_list' %}" class="button light">{% translate "Вернуться в магазин" %}</a>
+    <a href="{% url 'orders:order_create' %}" class="button">{% translate "Оплатить" %}</a>
   </p>
 {% endblock %}
