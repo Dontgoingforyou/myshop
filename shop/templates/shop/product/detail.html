@@ -1,5 +1,5 @@
 {% extends 'shop/base.html' %}
-{% load static %}
+{% load i18n static %}
 
 {% block title %}{{ product.name }}{% endblock %}
 
@@ -18,7 +18,7 @@
             {% csrf_token %}
             <div style="display: flex; align-items: center; gap: 10px;">
                 {{ cart_product_form }}
-                <input type="submit" value="Добавить в корзину">
+                <input type="submit" value="{% translate 'Добавить в корзину' %}">
             </div>
             </form>
             <div class="description">
@@ -29,7 +29,7 @@
 
     {% if recommended_products %}
         <div class="recommendations">
-            <h3>Люди обычно покупают с данным товаром</h3>
+            <h3>{% translate "Люди обычно покупают с данным товаром" %}</h3>
             <div class="recommended_items">
                 {% for p in recommended_products %}
                     <div class="item">
