@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rosetta',
+    'parler',
 
     'shop',
     'orders',
@@ -97,6 +98,17 @@ LANGUAGES = [
     ('ru', _('Russian')),
     ('en', _('English')),
 ]
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'ru'},
+        {'code': 'en'},
+    ),
+    'default': {
+        'fallback': 'ru',
+        'Hide_untranslated': False,
+    }
+}
 
 LOCALE_PATHS = [BASE_DIR / 'locale']
 
