@@ -1,0 +1,14 @@
+{% extends 'shop/base.html' %}
+{% load i18n static %}
+
+{% block title %}{% translate "Вход"%}{% endblock %}
+
+{% block content %}
+  <h1>Вход</h1>
+  <p>Введите данные для входа в систему.</p>
+  <form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="{% translate 'Вход'%}"></p>
+  </form>
+{% endblock %}

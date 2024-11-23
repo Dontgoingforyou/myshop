@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-21 19:57+0300\n"
+"POT-Creation-Date: 2024-11-23 14:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,11 +92,11 @@ msgstr ""
 msgid "Оплатить"
 msgstr ""
 
-#: config/settings.py:97
+#: config/settings.py:98
 msgid "Russian"
 msgstr "Русский"
 
-#: config/settings.py:98
+#: config/settings.py:99
 msgid "English"
 msgstr "Английский"
 
@@ -183,23 +183,7 @@ msgstr ""
 msgid "Ваша корзина"
 msgstr ""
 
-#: shop/templates/shop/base.html:35
-#, python-format
-msgid ""
-"\n"
-"                            %(total)s руб. %(items)s товар\n"
-"                        "
-msgid_plural ""
-"\n"
-"                            %(total)s руб. %(items)s "
-"%(items|russian_pluralize:\"товар,товара,товаров\")s\n"
-"                        "
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-
-#: shop/templates/shop/base.html:42
+#: shop/templates/shop/base.html:39
 msgid "Ваша корзина пуста"
 msgstr ""
 

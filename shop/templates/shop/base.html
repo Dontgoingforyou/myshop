@@ -13,30 +13,46 @@
             {% get_current_language as LANGUAGE_CODE %}
             {% get_available_languages as LANGUAGES %}
             {% get_language_info_list for LANGUAGES as languages %}
-            <div class="languages">
-                <p>{% translate "Язык" %}:</p>
-                <ul class="languages">
-                    {% for language in languages %}
-                        <li>
-                            <a href="/{{ language.code }}/" {% if language.code == LANGUAGE_CODE %} class="selected"{% endif %}>
-                                {{ language.name_local }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
+            <div class="menu">
+                <div class="dropdown">
+                    <button class="dropdown-button">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {{ LANGUAGE_CODE|upper }} ▾
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <li>
+                                <a href="/{{ language.code }}/">
+                                    {{ language.name_local }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="user">
+                    {% if request.user.is_authenticated %}
+                        <form action="{% url 'users:logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="link">Выход</button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'users:login' %}">Вход</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
+
         <div id="subheader">
             <div class="cart">
                 {% with total_items=cart|length %}
                     {% if total_items > 0 %}
                         {% translate "Ваша корзина" %}:
                         <a href="{% url 'cart:cart_detail' %}">
-                        {% blocktranslate count items=total_items with total=cart.get_total_price %}
-                            {{ total }} руб. {{ items }} товар
-                        {% plural %}
-                            {{ total }} руб. {{ items }} {{ items|russian_pluralize:"товар,товара,товаров" }}
-                        {% endblocktranslate %}
+                            {{ total_items }} {{ total_items|russian_pluralize:"товар,товара,товаров" }},
+                            {{ cart.get_total_price }} руб.
                         </a>
                     {% elif not order %}
                         {% translate "Ваша корзина пуста" %}
@@ -44,9 +60,54 @@
                 {% endwith %}
             </div>
         </div>
+
+        {% if messages %}
+          <div id="messages">
+            {% for message in messages %}
+              <div class="alert {{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
         <div id="content">
             {% block content %}
             {% endblock %}
         </div>
+
+         <script>
+          setTimeout(() => {
+            const messages = document.getElementById('messages');
+            if (messages) {
+              // Проверяем наличие сообщения с классом "success"
+              const successMessage = messages.querySelector('.alert.success');
+              if (successMessage) {
+                messages.style.display = 'none';
+                window.location.href = "{% url 'shop:product_list' %}";
+              }
+            }
+          }, 3000);
+         </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const dropdownButton = document.querySelector('.dropdown-button');
+                const dropdownMenu = document.querySelector('.dropdown-menu');
+
+                dropdownButton.addEventListener('click', () => {
+                    dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+                });
+
+                // Закрываем меню при клике вне его
+                document.addEventListener('click', (event) => {
+                    if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                        dropdownMenu.style.display = 'none';
+                    }
+                });
+            });
+        </script>
+
+
     </body>
 </html>

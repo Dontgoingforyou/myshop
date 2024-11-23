@@ -13,6 +13,7 @@ urlpatterns = i18n_patterns(
     path(_('orders/'), include('orders.urls', namespace='orders')),
     path(_('payment/'), include('payment.urls', namespace='payment')),
     path(_('coupons/'), include('coupons.urls', namespace='coupons')),
+    path(_('users/'), include('users.urls', namespace='users')),
     path('rosetta/', include('rosetta.urls')),
     path('', include('shop.urls', namespace='shop'))
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

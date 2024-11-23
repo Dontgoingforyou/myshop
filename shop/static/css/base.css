@@ -1,5 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
+.alert {
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+button.link {
+    background: none;
+    color: #3182ce;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+}
+
+button.link:hover {
+    color: #63b3ed;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -45,6 +77,69 @@ a.button.light {
     color:#666;
     background:#ededed;
 }
+
+/* Стиль для кнопки выпадающего меню */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-button {
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #2d3748;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dropdown-button:hover {
+    background-color: #e2e8f0;
+}
+
+/* Скрываем меню по умолчанию */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Позиционируем под кнопкой */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 10px 0;
+    list-style: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Элементы меню */
+.dropdown-menu li {
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 8px 12px;
+    color: #2d3748;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #e2e8f0;
+    color: #2c5282;
+}
+
+/* Отображаем меню при наведении */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
 
 .text-left {
     text-align:left;
@@ -132,11 +227,12 @@ ul.errorlist {
 
 
 #header {
+    display: flex;
+    justify-content: space-between; /* Лого слева, меню справа */
+    align-items: center;
     padding: 10px 100px;
-    font-size: 18px;
-    overflow: auto;
     background-color: #2d3748;
-    color: #edf2f7;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 #subheader {
@@ -148,10 +244,16 @@ ul.errorlist {
 
 #header .logo {
     font-family: 'Inter', sans-serif;
-    float: left;
-    color: #edf2f7;
-    font-size: 22px;
-    margin-right: 10%;
+    color: #c8d8e3;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#header .menu {
+    display: flex;
+    align-items: center; /* Выравнивание по вертикали */
+    gap: 20px; /* Расстояние между языком и кнопкой */
 }
 
 #subheader .cart {
@@ -316,53 +418,74 @@ ul.errorlist {
     list-style: none;
     margin: 0;
     padding: 0;
-    float: left;
+    display: flex;
+    gap: 10px; /* Отступы между ссылками */
 }
 
-.languages ul li {
-    float: left;
-    margin: 0 0 0 10px;
+.languages ul li a {
+    color: #3182ce;
+    text-decoration: none;
     font-size: 14px;
 }
 
 .languages p {
-    float: left;
     margin: 0;
+    font-size: 14px;
+    color: #718096;
+}
+
+.languages ul li a.selected {
+    font-weight: bold;
+    color: #2c5282;
+}
+
+.recommended_items {
+    display: flex;
+    flex-wrap: wrap; /* Позволяет карточкам переноситься на новую строку */
+    gap: 20px; /* Пространство между карточками */
+    margin-top: 10px; /* Отступ от заголовка */
+    justify-content: flex-start; /* Выравнивание карточек по левому краю */
+}
+
+.recommended_items .item {
+    flex: 1 1 calc(25% - 20px); /* 4 карточки в строке с учетом отступов */
+    max-width: calc(10% - 20px); /* Ограничение ширины карточек */
+    background: #fff; /* Фон карточки */
+    border: 1px solid #e2e8f0; /* Лёгкая рамка */
+    border-radius: 8px; /* Закругленные углы */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Тень */
+    text-align: center;
+    padding: 10px; /* Внутренние отступы */
+}
+
+.recommended_items img {
+    width: 100%; /* Изображения занимают всю ширину карточки */
+    height: auto; /* Сохраняем пропорции */
+    border-radius: 4px; /* Закругленные углы изображений */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 
-.recommendations {
-    clear:both;
+.recommended_items img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.recommendations div {
-    float:left;
+.recommended_items p {
+    font-size: 14px;
+    color: #2d3748;
+    margin: 10px 0 0;
 }
 
-.recommendations img {
-    width:200px
+.recommendations h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #2d3748;
 }
 
-.recommendations p {
-    clear:both;
-}
 
-.recommendations.cart {
-    width:60%;
-    float:left;
-    overflow:auto;
-}
-
-.recommendations.cart h3 {
-    margin-top:0;
-}
-
-.recommendations.cart .item {
-    margin-right:10px;
-}
-
-.recommendations.cart img {
-    width:120px;
+.user {
+    font-size: 14px;
 }
 
 /* braintree hosted fields */

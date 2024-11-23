@@ -3,6 +3,7 @@ import logging
 from pathlib import Path
 from decouple import config
 from django.utils.translation import gettext_lazy as _
+from django.contrib.messages import constants as messages
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -29,6 +30,7 @@ INSTALLED_APPS = [
     'parler',
 
     'shop',
+    'users',
     'orders',
     'cart',
     'payment',
@@ -122,6 +124,14 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'static'
 
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+}
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
@@ -134,6 +144,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 CART_SESSION_ID = 'cart'
 
