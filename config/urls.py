@@ -8,14 +8,15 @@ from django.urls import path, include
 from payment.webhooks import stripe_webhook
 
 urlpatterns = i18n_patterns(
-    path('admin/', admin.site.urls),
+path(_('users/'), include('django.contrib.auth.urls')),
+    path(_('users/'), include('users.urls', namespace='users')),
     path(_('cart/'), include('cart.urls', namespace='cart')),
     path(_('orders/'), include('orders.urls', namespace='orders')),
     path(_('payment/'), include('payment.urls', namespace='payment')),
     path(_('coupons/'), include('coupons.urls', namespace='coupons')),
-    path(_('users/'), include('users.urls', namespace='users')),
     path('rosetta/', include('rosetta.urls')),
-    path('', include('shop.urls', namespace='shop'))
+    path('', include('shop.urls', namespace='shop')),
+    path(_('admin/'), admin.site.urls),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [

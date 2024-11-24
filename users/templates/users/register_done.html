@@ -1,0 +1,9 @@
+{% extends 'shop/base.html' %}
+{% load i18n static %}
+
+{% block title %}{% translate "Добро пожаловать!" %}{% endblock %}
+
+{% block content %}
+  <h1>Добро пожаловать {{ new_user.first_name }}!</h1>
+  <p>Ваш аккаунт успешно создан! Теперь вы можете <a href="{% url 'login' %}">Войти</a></p>
+{% endblock %}

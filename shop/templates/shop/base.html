@@ -34,12 +34,13 @@
 
                 <div class="user">
                     {% if request.user.is_authenticated %}
-                        <form action="{% url 'users:logout' %}" method="post" style="display: inline;">
+                        <form action="{% url 'logout' %}" method="post" style="display: inline;">
                             {% csrf_token %}
                             <button type="submit" class="link">Выход</button>
                         </form>
                     {% else %}
-                        <a href="{% url 'users:login' %}">Вход</a>
+                        <a href="{% url 'login' %}">Вход</a>
+                        <a href="{% url 'users:register' %}">Регистрация</a>
                     {% endif %}
                 </div>
             </div>

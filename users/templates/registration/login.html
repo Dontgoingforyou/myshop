@@ -4,11 +4,15 @@
 {% block title %}{% translate "Вход"%}{% endblock %}
 
 {% block content %}
-  <h1>Вход</h1>
-  <p>Введите данные для входа в систему.</p>
+  <h1>{% translate "Вход" %}</h1>
+  <p>{% translate "Введите данные для входа в систему." %}</p>
   <form method="post">
     {{ form.as_p }}
     {% csrf_token %}
-    <p><input type="submit" value="{% translate 'Вход'%}"></p>
-  </form>
+    <p><input type="submit" value="{% translate 'Вход' %}"></p>
+    <p><a href="{% url 'users:register' %}" class="button">{% translate 'Регистрация' %}</a></p>
+</form>
+  <p>
+      <a href="{% url 'password_reset' %}" class="forgot-password">{% translate "Забыли пароль?" %}</a>
+  </p>
 {% endblock %}

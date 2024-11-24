@@ -20,17 +20,22 @@
 }
 
 button.link {
-    background: none;
-    color: #3182ce;
-    border: none;
-    padding: 0;
-    font: inherit;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3182ce;
+    color: white;
+    text-decoration: none;  /* Убираем подчеркивание */
+    border-radius: 4px;
+    text-align: center;
+    font-size: 16px;
     cursor: pointer;
 }
 
 button.link:hover {
     color: #63b3ed;
 }
+
+
 
 body {
     margin: 0;
@@ -66,6 +71,8 @@ a.button, input[type="submit"] {
     border: 0;
     transition: background 0.3s ease, transform 0.2s ease;
     display: inline-block;
+    cursor: pointer;
+    text-align: center;
 }
 
 a.button:hover, input[type="submit"]:hover {
@@ -195,26 +202,68 @@ td input[type="submit"] {
     padding:4px 10px;
 }
 
-form p label, form p input {
-    float:left;
-    clear:both;
+/* Стили для контейнера формы */
+form {
+    max-width: 400px; /* Ограничиваем ширину формы */
+    margin: 0; /* Убираем центрирование формы */
+    padding: 0;
+}
+
+/* Выравнивание меток и полей */
+form p {
+    display: flex; /* Используем flexbox для выравнивания меток и полей */
+    flex-direction: column; /* Метка сверху, поле снизу */
+    margin-bottom: 15px; /* Отступ между группами элементов */
 }
 
 form p label {
-    font-size:14px;
-    padding-bottom:4px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px; /* Отступ между меткой и полем */
+    color: #333;
 }
 
 form p input {
-    width:300px;
-    font-size:13px;
-    margin-bottom:10px;
-    padding:10px 12px;
-    border:0;
-    background:#efefef;
-    color:#666;
-    border-radius:4px;
+    width: 100%; /* Поля занимают всю ширину контейнера */
+    font-size: 13px;
+    padding: 10px 12px;
+    border: 1px solid #ddd; /* Добавляем границу */
+    background: #efefef;
+    color: #666;
+    border-radius: 4px;
 }
+
+/* Ссылка "Забыли пароль?" */
+.forgot-password {
+    display: block; /* Размещаем на отдельной строке */
+    margin-top: 10px; /* Отступ сверху */
+    font-size: 14px;
+    color: #3182ce;
+    text-decoration: none;
+    text-align: left; /* Выровнять по левому краю */
+}
+
+.forgot-password:hover {
+    color: #63b3ed;
+    text-decoration: underline;
+}
+
+/* Кнопка "Войти" */
+form input[type="submit"] {
+    background-color: #3182ce;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px; /* Отступ сверху */
+}
+
+form input[type="submit"]:hover {
+    background-color: #63b3ed;
+}
+
 
 ul.errorlist {
    float:left;

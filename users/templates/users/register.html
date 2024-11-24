@@ -1,0 +1,14 @@
+{% extends 'shop/base.html' %}
+{% load i18n static %}
+
+{% block title %}{% translate "Создание аккаунта" %}{% endblock %}
+
+{% block content %}
+  <h1>{% translate "Создание аккаунта" %}</h1>
+  <p>{% translate "Заполните форму регистрации" %}</p>
+  <form method="post">
+    {{ user_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="{% translate 'Создать аккаунт' %}"></p>
+  </form>
+{% endblock %}
